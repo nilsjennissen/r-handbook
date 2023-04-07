@@ -1,0 +1,165 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+# R Programming Language
+# Possible Data Analysis
+# https://www.emilhvitfeldt.com/post/2018-03-20-recreate-sankey-flow-chart/
+
+# Load libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ggthemes)
+library(ggrepel)
+library(plotly)
+```
+
+```{r}
+# Load data
+data <- read.csv("tracklist.csv", header = TRUE, sep = ",")
+
+# Convert to numeric
+data[, 2:7] <- lapply(data[, 2:7], as.numeric)
+
+# Seperate
+# Analyze correlation between song feautures
+cor(data[, 2:7])
+
+# plotly correlation matrix for all numeric columns
+plot_ly(data, type = "heatmap", x = colnames(data[, 2:7]), y = colnames(data[, 2:7]), z = cor(data[, 2:7]))
+
+```
+
+
+
+```{r}
+
+# Sample
+axis = list(showline=FALSE,
+            zeroline=FALSE,
+            gridcolor='#ffff',
+            ticklen=4,
+            titlefont=list(size=13))
+
+p <- data %>%
+  plot_ly() %>%
+  add_trace(
+    type = 'splom',
+    dimensions = list(
+    list(label='danceability', values=~`danceability`),
+    list(label='acousticness', values=~`acousticness`),
+    list(label='energy', values=~`energy`),
+    list(label='instrumentalness', values=~`instrumentalness`),
+    list(label='liveness', values=~`liveness`),
+    list(label='speechiness', values=~`speechiness`),
+    list(label='valence', values=~`valence`),
+    list(label='tempo', values=~`tempo`),
+    list(label='duration_ms', values=~`duration_ms`),
+    list(label='loudness', values=~`loudness`),
+    list(label='key', values=~`key`)
+    ),
+    text=~factor(name, labels=c("white")),
+    diagonal=list(visible=F),
+    marker = list(
+      color = '#ef553b',
+      size = 5,
+      line = list(
+        width = 1,
+        color = 'rgb(230,230,230)'
+      )
+    )
+  ) %>%
+  layout(
+    title = "Interactive Scatterplot Matrix (SPLOM) for Wine Quality Data",
+    hovermode='closest',
+    dragmode = 'select',
+    plot_bgcolor='rgba(240,240,240, 0.95)',
+    xaxis=list(domain=NULL, showline=F, zeroline=F, gridcolor='#ffff', ticklen=4, titlefont=list(size=13)),
+    yaxis=list(domain=NULL, showline=F, zeroline=F, gridcolor='#ffff', ticklen=4, titlefont=list(size=13)),
+    xaxis2=axis,
+    xaxis3=axis,
+    xaxis4=axis,
+    xaxis5=axis,
+    xaxis6=axis,
+    xaxis7=axis,
+    xaxis8=axis,
+    xaxis9=axis,
+    xaxis10=axis,
+    xaxis11=axis,
+    yaxis2=axis,
+    yaxis3=axis,
+    yaxis4=axis,
+    yaxis5=axis,
+    yaxis6=axis,
+    yaxis7=axis,
+    yaxis8=axis,
+    yaxis9=axis,
+    yaxis10=axis,
+    yaxis11=axis
+  )
+
+p
+
+```
+
+
+```{r}
+
+# Linear regressions
+# Danceability vs Acousticness
+ggplot(data, aes(x = danceability, y = acousticness)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_economist() +
+  labs(title = "Danceability vs Acousticness",
+       x = "Danceability",
+       y = "Acousticness")
+```
+
+
+
+```{r}
+
+# Danceability vs Energy
+ggplot(data, aes(x = danceability, y = energy)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_economist() +
+  labs(title = "Danceability vs Energy",
+       x = "Danceability",
+       y = "Energy")
+
+```
+
+
+
+```{r}
+
+# Danceability vs Instrumentalness
+ggplot(data, aes(x = danceability, y = instrumentalness)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_economist() +
+  labs(title = "Danceability vs Instrumentalness",
+       x = "Danceability",
+       y = "Instrumentalness")
+
+```
+
+
+
+```{r}
+
+# Danceability vs Liveness
+ggplot(data, aes(x = danceability, y = liveness)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_economist() +
+  labs(title = "Danceability vs Liveness",
+       x = "Danceability",
+       y = "Liveness")
+
+
+```
