@@ -1,0 +1,23 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+```{r, libraries}
+
+library(readr)
+```
+position the caret at any line or the code chunk, then click "+".
+
+The code chunk appears:
+```{r, data}
+# Read data from airport.csv
+df <- read_csv('airports.csv')
+# Show first few rows
+head(df)
+```
+
+
+
+
+
