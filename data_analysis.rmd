@@ -28,7 +28,21 @@ data[, 2:7] <- lapply(data[, 2:7], as.numeric)
 cor(data[, 2:7])
 
 # plotly correlation matrix for all numeric columns
-plot_ly(data, type = "heatmap", x = colnames(data[, 2:7]), y = colnames(data[, 2:7]), z = cor(data[, 2:7]))
+# https://plot.ly/ggplot2/correlation-matrix/
+
+# Correlation matrix
+ggplot(data, aes(x = danceability, y = acousticness)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_economist() +
+  labs(title = "Danceability vs Acousticness",
+       x = "Danceability",
+       y = "Acousticness")
+
+```
+
+```{r}
+
 
 ```
 
