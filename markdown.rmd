@@ -3,11 +3,22 @@ title: "R Notebook"
 output: html_document
 ---
 
-```{r, libraries}
+```{r, setup, include=FALSE}
+# This is a code chunk
+```
 
-library(readr)
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r, libraries}
+df <- read_csv('tracklist.csv')
+head(df)
 ```
 position the caret at any line or the code chunk, then click "+".
+
 
 The code chunk appears:
 ```{r, data}
@@ -16,8 +27,18 @@ df <- read_csv('airports.csv')
 # Show first few rows
 head(df)
 ```
+#
+```{r}
+
+# Delete NA in column
+df <- df %>% filter(!is.na(lat))
+# Mean of column
+mean(df$lat)
 
 
+```
 
+```{r}
 
+```
 
