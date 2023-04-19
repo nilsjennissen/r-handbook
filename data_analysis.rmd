@@ -41,10 +41,6 @@ ggplot(data, aes(x = danceability, y = acousticness)) +
 
 ```
 
-```{r}
-
-
-```
 
 
 
@@ -152,7 +148,7 @@ ggplot(data, aes(x = danceability, y = energy)) +
 ```{r}
 
 # Danceability vs Instrumentalness
-ggplot(data, aes(x = danceability, y = instrumentalness)) +
+ggplot(p, aes(x = danceability, y = instrumentalness)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
   theme_economist() +
