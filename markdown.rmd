@@ -14,7 +14,7 @@ library(ggplot2)
 ```
 
 ```{r, libraries}
-df <- read_csv('tracklist.csv')
+df <- read_csv('data/tracklist.csv')
 head(df)
 ```
 position the caret at any line or the code chunk, then click "+".

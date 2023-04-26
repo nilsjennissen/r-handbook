@@ -18,7 +18,7 @@ library(plotly)
 
 ```{r}
 # Load data
-data <- read.csv("tracklist.csv", header = TRUE, sep = ",")
+data <- read.csv("data/tracklist.csv", header = TRUE, sep = ",")
 
 # Convert to numeric
 data[, 2:7] <- lapply(data[, 2:7], as.numeric)

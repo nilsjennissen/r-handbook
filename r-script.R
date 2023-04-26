@@ -6,7 +6,7 @@ library(dplyr)
 library(tidyr)
 
 # Importing the dataset 
-dataset <- read.csv('tracklist.csv')
+dataset <- read.csv('data/tracklist.csv')
 
 # Perform a task
 head(dataset)
